@@ -62,7 +62,7 @@ test:
 
 
 .PHONY: release
-release: db data
+release: db
 	$(call log, performing release steps)
 
 
@@ -172,16 +172,6 @@ migrations:
 .PHONY: migrate
 migrate:
 	$(call log, applying migrations)
-
-
-.PHONY: data
-data: static
-	$(call log, preparing data)
-
-
-.PHONY: static
-static:
-	$(call log, collecting static)
 
 
 .PHONY: docker

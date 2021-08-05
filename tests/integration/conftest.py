@@ -4,7 +4,7 @@ import httpx
 import pytest
 
 from framework.config import settings
-from main.asgi import application
+from main.webapp import application
 
 TIMEOUT = 4
 

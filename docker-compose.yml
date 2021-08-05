@@ -1,40 +1,40 @@
 version: "3.3"
 services:
-  alpha-web:
+  galera-web:
     build: ./
-    container_name: alpha-web
+    container_name: galera-web
     depends_on:
-      - alpha-db
+      - galera-db
     entrypoint: ["make", "wait-for-db", "run-prod"]
     environment:
-      DATABASE_URL: "postgresql://alpha:alpha@alpha-db:5432/alpha"
+      DATABASE_URL: "postgresql://galera:galera@galera-db:5432/galera"
       PORT: 80
-    image: alpha-web
+    image: galera-web
     ports:
       - "8888:80"
-  alpha-db:
-    container_name: alpha-db
+  galera-db:
+    container_name: galera-db
     environment:
-      POSTGRES_USER: alpha
-      POSTGRES_PASSWORD: alpha
-      POSTGRES_DB: alpha
+      POSTGRES_USER: galera
+      POSTGRES_PASSWORD: galera
+      POSTGRES_DB: galera
     image: postgres:13.3-alpine
     ports:
       - "5555:5432"
     restart: always
     volumes:
-      - alpha-volume:/var/lib/postgresql/data
-  alpha-dba:
-    container_name: alpha-dba
+      - galera-volume:/var/lib/postgresql/data
+  galera-dba:
+    container_name: galera-dba
     image: adminer
     restart: always
     ports:
       - 5556:8080
     volumes:
-      - alpha-volume:/var/lib/postgresql/data
+      - galera-volume:/var/lib/postgresql/data
 volumes:
-  alpha-volume:
-    name: alpha-volume
+  galera-volume:
+    name: galera-volume
     driver: local
     driver_opts:
       type: tmpfs
