@@ -21,17 +21,17 @@ from sqlalchemy.exc import IntegrityError
 from sqlalchemy.exc import NoResultFound
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.ext.asyncio import create_async_engine
-from sqlalchemy.orm import contains_eager
 from sqlalchemy.orm import declarative_base
 from sqlalchemy.orm import joinedload
 from sqlalchemy.orm import relationship
 from sqlalchemy.orm import sessionmaker
 
 from framework.config import settings
-from framework.logging import debug
 from framework.logging import logger
 
 _db_url = settings.DATABASE_URL.replace("postgres", "postgresql")
+if "?" in _db_url:
+    _db_url = _db_url[: _db_url.index("?")]
 
 engine = create_async_engine(
     _db_url.replace("://", "+asyncpg://"),
