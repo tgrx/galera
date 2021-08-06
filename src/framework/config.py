@@ -8,6 +8,8 @@ from pydantic import Field
 from pydantic import ValidationError
 from pydantic.error_wrappers import ErrorWrapper
 
+from framework.dirs import DIR_CONFIG_SECRETS
+
 
 class DatabaseSettings(BaseSettings):
     DATABASE_URL: Optional[str] = Field()
@@ -37,6 +39,7 @@ class DatabaseSettings(BaseSettings):
         case_sensitive = True
         env_file = ".env"
         env_file_encoding = "utf-8"
+        secrets_dir = DIR_CONFIG_SECRETS.as_posix()
 
     def database_url_from_db_components(self) -> str:
         def fail_validation(error_message: str) -> NoReturn:
@@ -80,6 +83,7 @@ class Settings(DatabaseSettings):
 
     HOST: str = Field(default="localhost")
     MODE_DEBUG: bool = Field(default=False)
+    MODE_DEBUG_SQL: bool = Field(default=False)
     PORT: int = Field(default=8000)
     REQUEST_TIMEOUT: int = Field(default=30)
     SENTRY_DSN: Optional[str] = Field()

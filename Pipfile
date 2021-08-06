@@ -15,9 +15,11 @@ isort = "*"
 pudb = "*"
 pytest = "*"
 pytest-asyncio = "*"
+pytest-mock = "*"
 
 [packages]
 asyncpg = "*"
+delorean = "*"
 fastapi = "*"
 gunicorn = "*"
 httpx = "*"
@@ -25,4 +27,5 @@ psycopg2 = "*"
 pydantic = {extras = ["dotenv"], version = "*"}
 python-dotenv = "*"
 sentry-sdk = "*"
+sqlalchemy = "*"
 uvicorn = {extras = [ "standard",], version = "*"}

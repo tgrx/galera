@@ -18,3 +18,8 @@ include ./Makefile.targets.mk
 # ---------------------------------------------------------
 # [  TARGETS  ]
 # keep your targets here
+
+
+.PHONY: migrate
+migrate::
+	$(PYTHON) -m main.db

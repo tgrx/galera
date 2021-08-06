@@ -46,7 +46,7 @@ format:
 .PHONY: test
 test:
 	$(call log, running tests)
-	pytest
+	pytest -vv -s
 	isort --virtual-env="$(DIR_VENV)" --check-only \
 		"$(DIR_SRC)" \
 		"$(DIR_TESTS)" \
@@ -170,7 +170,7 @@ migrations:
 
 
 .PHONY: migrate
-migrate:
+migrate::
 	$(call log, applying migrations)
 
 
